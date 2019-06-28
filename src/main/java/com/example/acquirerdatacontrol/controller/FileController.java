@@ -30,7 +30,7 @@ public class FileController {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public List<File> create(@RequestBody MultipartFile file){
+    public ResponseEntity create(@RequestBody MultipartFile file){
         return fileService.create(file);
     }
 

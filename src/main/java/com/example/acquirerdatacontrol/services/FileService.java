@@ -2,6 +2,7 @@ package com.example.acquirerdatacontrol.services;
 
 import com.example.acquirerdatacontrol.model.File;
 import com.example.acquirerdatacontrol.repository.FileRepository;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,13 +32,13 @@ public class FileService {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    public List<File> create(@RequestBody MultipartFile file){
+    public ResponseEntity create(@RequestBody MultipartFile file){
         List<File> files = new ArrayList<>();
         try {
             String line;
             BufferedReader bufferReader = new BufferedReader(new InputStreamReader(file.getInputStream()));
             while ((line = bufferReader.readLine()) != null){
-                if(line.contains("UflaCard")){
+                if(line.contains("UflaCard") && line.length()== 50){
                     files.add(new File(
                             line.charAt(0),
                             line.substring(1,11),
@@ -48,7 +49,7 @@ public class FileService {
                             line.substring(42,50)
                     ));
                 }
-                else if(line.contains("FagammonCard")){
+                else if(line.contains("FagammonCard") && line.length()==36){
                     files.add(new File(
                             line.charAt(0),
                             line.substring(1,9),
@@ -57,11 +58,14 @@ public class FileService {
                             line.substring(29,36)
                     ));
                 }
+                else{
+                    return ResponseEntity.badRequest().body("Dados incorretos no arquivo!");
+                }
             }
         } catch(IOException e){
-            System.err.println(e.getMessage());
+            return ResponseEntity.badRequest().body("Dados incorretos no arquivo!");
         }
         fileRepository.saveAll(files);
-        return files;
+        return ResponseEntity.ok("Dados salvos!");
     }
 }
