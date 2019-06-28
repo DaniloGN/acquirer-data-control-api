@@ -13,7 +13,7 @@ public class File {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    private String registry_type;
+    private char registry_type;
     private String establishment;
     private String processing_date;
     private String inicial_period;
@@ -21,7 +21,8 @@ public class File {
     private String sequence;
     private String acquirer_name;
 
-    public File(String registry_type, String establishment, String processing_date, String inicial_period, String final_period, String sequence, String acquirer_name) {
+    //uflacard
+    public File(char registry_type, String establishment, String processing_date, String inicial_period, String final_period, String sequence, String acquirer_name) {
         this.registry_type = registry_type;
         this.establishment = establishment;
         this.processing_date = processing_date;
@@ -30,13 +31,23 @@ public class File {
         this.sequence = sequence;
         this.acquirer_name = acquirer_name;
     }
+    //faggamonCard
+    public File(char registry_type, String processing_date, String establishment, String acquirer_name, String sequence){
+        this.registry_type = registry_type;
+        this.processing_date = processing_date;
+        this.establishment = establishment;
+        this.acquirer_name = acquirer_name;
+        this.sequence = sequence;
+        this.inicial_period = null;
+        this.final_period = null;
+    }
     public File(){}
 
-    public String getRegistry_type() {
+    public char getRegistry_type() {
         return registry_type;
     }
 
-    public void setRegistry_type(String registry_type) {
+    public void setRegistry_type(char registry_type) {
         this.registry_type = registry_type;
     }
 
