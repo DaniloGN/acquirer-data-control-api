@@ -1,6 +1,5 @@
 package com.example.acquirerdatacontrol.controller;
 
-import com.example.acquirerdatacontrol.model.File;
 import com.example.acquirerdatacontrol.services.FileService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +26,11 @@ public class FileController {
     @GetMapping(path = {"/{id}"})
     public ResponseEntity findById(@PathVariable long id){
         return fileService.findById(id);
+    }
+
+    @GetMapping(path = {"download/{id}"})
+    public ResponseEntity downloadFile(@PathVariable long id){
+        return fileService.downloadAcquirerFile(id);
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

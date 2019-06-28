@@ -1,7 +1,5 @@
 package com.example.acquirerdatacontrol.model;
 
-import jdk.nashorn.internal.objects.annotations.Constructor;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,36 +9,36 @@ import javax.persistence.Id;
 public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     private char registry_type;
     private String establishment;
     private String processing_date;
-    private String inicial_period;
+    private String initial_period;
     private String final_period;
     private String sequence;
     private String acquirer_name;
 
-    //uflacard
-    public File(char registry_type, String establishment, String processing_date, String inicial_period, String final_period, String sequence, String acquirer_name) {
+    public File(char registry_type, String establishment, String processing_date, String initial_period, String final_period, String sequence, String acquirer_name) {
         this.registry_type = registry_type;
         this.establishment = establishment;
         this.processing_date = processing_date;
-        this.inicial_period = inicial_period;
+        this.initial_period = initial_period;
         this.final_period = final_period;
         this.sequence = sequence;
         this.acquirer_name = acquirer_name;
     }
-    //faggamonCard
+
     public File(char registry_type, String processing_date, String establishment, String acquirer_name, String sequence){
-        this.registry_type = registry_type;
-        this.processing_date = processing_date;
-        this.establishment = establishment;
-        this.acquirer_name = acquirer_name;
-        this.sequence = sequence;
-        this.inicial_period = null;
+        this.registry_type =registry_type;
+        this.establishment =establishment;
+        this.processing_date =processing_date;
+        this.initial_period = null;
         this.final_period = null;
+        this.sequence =sequence;
+        this.acquirer_name =acquirer_name;
     }
+
     public File(){}
 
     public char getRegistry_type() {
@@ -67,12 +65,12 @@ public class File {
         this.processing_date = processing_date;
     }
 
-    public String getInicial_period() {
-        return inicial_period;
+    public String getInitial_period() {
+        return initial_period;
     }
 
-    public void setInicial_period(String inicial_period) {
-        this.inicial_period = inicial_period;
+    public void setInitial_period(String initial_period) {
+        this.initial_period = initial_period;
     }
 
     public String getFinal_period() {
@@ -97,5 +95,13 @@ public class File {
 
     public void setAcquirer_name(String acquirer_name) {
         this.acquirer_name = acquirer_name;
+    }
+
+    public String faggamonCard() {
+        return getRegistry_type()+getProcessing_date()+getEstablishment()+getAcquirer_name()+getSequence();
+    }
+
+    public String uflaCard() {
+        return getRegistry_type()+getEstablishment()+getProcessing_date()+ getInitial_period()+getFinal_period()+getSequence()+getAcquirer_name();
     }
 }
