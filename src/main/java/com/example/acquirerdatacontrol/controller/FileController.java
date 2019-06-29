@@ -18,7 +18,7 @@ public class FileController {
     public FileController(FileService fileService){
         this.fileService = fileService;
     }
-    
+
     @GetMapping
     public List findAll(){
         return this.fileService.findAll();
@@ -27,6 +27,11 @@ public class FileController {
     @GetMapping(path = {"/{id}"})
     public ResponseEntity findById(@PathVariable long id){
         return fileService.findById(id);
+    }
+
+    @PutMapping(path = {"/estado/{id}"})
+    public ResponseEntity updateStatus(@PathVariable long id, @RequestBody String status) {
+        return fileService.updateFileStatus(id, status);
     }
 
     @GetMapping(path = {"download/{id}"})

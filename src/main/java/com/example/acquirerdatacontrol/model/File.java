@@ -18,6 +18,7 @@ public class File {
     private String final_period;
     private String sequence;
     private String acquirer_name;
+    private String status;
 
     public File(char registry_type, String establishment, String processing_date, String initial_period, String final_period, String sequence, String acquirer_name) {
         this.registry_type = registry_type;
@@ -27,6 +28,7 @@ public class File {
         this.final_period = final_period;
         this.sequence = sequence;
         this.acquirer_name = acquirer_name;
+        this.status = "Esperando";
     }
 
     public File(char registry_type, String processing_date, String establishment, String acquirer_name, String sequence){
@@ -37,6 +39,7 @@ public class File {
         this.final_period = null;
         this.sequence =sequence;
         this.acquirer_name =acquirer_name;
+        this.status = "Esperando";
     }
 
     public File(){}
@@ -97,6 +100,14 @@ public class File {
 
     public void setAcquirer_name(String acquirer_name) {
         this.acquirer_name = acquirer_name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String faggamonCard() {

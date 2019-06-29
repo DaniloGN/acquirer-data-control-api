@@ -39,6 +39,20 @@ public class FileService {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    public ResponseEntity updateFileStatus(@PathVariable long id, @RequestBody String status){
+        Optional<File> optionalFile = fileRepository.findById(id);
+        if(!status.equals("Aprovado") && !status.equals("Rejeitado")) return ResponseEntity.badRequest().body("Status inválido");
+        if(optionalFile.isPresent()){
+            File file = optionalFile.get();
+            file.setStatus(status);
+            fileRepository.save(file);
+            return ResponseEntity.ok(status+"!");
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Arquivo não encontrado!");
+        }
+    }
+
     public ResponseEntity create(@RequestBody MultipartFile file){
         List<File> files = new ArrayList<>();
         try {
