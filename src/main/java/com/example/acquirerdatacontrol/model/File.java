@@ -41,6 +41,8 @@ public class File {
 
     public File(){}
 
+    public Long getId() { return id; }
+
     public char getRegistry_type() {
         return registry_type;
     }

@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping({"/files"})
 public class FileController {
 
@@ -17,7 +18,7 @@ public class FileController {
     public FileController(FileService fileService){
         this.fileService = fileService;
     }
-
+    
     @GetMapping
     public List findAll(){
         return this.fileService.findAll();
