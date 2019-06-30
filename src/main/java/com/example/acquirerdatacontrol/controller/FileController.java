@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping({"/files"})
+@RequestMapping({"/arquivos"})
 public class FileController {
 
     private FileService fileService;

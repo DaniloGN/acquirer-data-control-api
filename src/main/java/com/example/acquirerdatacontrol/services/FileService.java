@@ -2,7 +2,6 @@ package com.example.acquirerdatacontrol.services;
 
 import com.example.acquirerdatacontrol.model.File;
 import com.example.acquirerdatacontrol.repository.FileRepository;
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;

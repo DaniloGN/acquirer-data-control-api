@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 public class File {
@@ -19,6 +21,7 @@ public class File {
     private String sequence;
     private String acquirer_name;
     private String status;
+    private Timestamp create_at;
 
     public File(char registry_type, String establishment, String processing_date, String initial_period, String final_period, String sequence, String acquirer_name) {
         this.registry_type = registry_type;
@@ -108,6 +111,10 @@ public class File {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public LocalDateTime getCreate_at(){
+        return create_at.toLocalDateTime();
     }
 
     public String faggamonCard() {
