@@ -28,23 +28,14 @@ public class ContractController {
         return this.contractService.findAll();
     }
 
-//    @PostMapping
-//    public ResponseEntity create(@RequestBody Map<String, Object> json){
-//        System.out.println(json.get("client"));
-//        Client client = new Client(json.get("client.id"),json.get("client.name"));
-//        return contractService.create(json.get("client"), json.get("acquirer"), json.get("establishment"));
-//    }
-
     @PostMapping
     public ResponseEntity create(@RequestBody ObjectNode object){
-        ObjectMapper mapper = new ObjectMapper();
-        try{
-            Client client = mapper.treeToValue(object.get("client"), Client.class);
-            Acquirer acquirer = mapper.treeToValue(object.get("acquirer"), Acquirer.class);
-            return contractService.create(client, acquirer, object.get("establishment").toString());
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body("Dados incompletos!");
-        }
+        return contractService.create(object);
+    }
+
+    @DeleteMapping
+    public ResponseEntity delete(@RequestBody ObjectNode id){
+       return contractService.delete(id);
     }
 
 }

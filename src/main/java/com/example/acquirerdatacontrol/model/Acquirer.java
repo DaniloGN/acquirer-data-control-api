@@ -31,4 +31,8 @@ public class Acquirer {
     public void setName(String name) {
         this.name = name;
     }
+
+    public int getContract_number() {
+        return establishment.size();
+    }
 }
