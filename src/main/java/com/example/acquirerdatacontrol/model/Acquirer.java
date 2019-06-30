@@ -1,9 +1,7 @@
 package com.example.acquirerdatacontrol.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Acquirer {
@@ -12,6 +10,9 @@ public class Acquirer {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "acquirer")
+    Set<Contract> establishment;
 
     public Acquirer(String name) {
         this.name = name;
