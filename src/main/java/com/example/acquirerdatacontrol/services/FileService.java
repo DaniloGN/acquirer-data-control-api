@@ -104,4 +104,8 @@ public class FileService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Arquivo não encontrado!");
         }
     }
+
+    public ResponseEntity receivedFilesStatistics(){
+        return ResponseEntity.ok(fileRepository.getStatisticsFile());
+    }
 }

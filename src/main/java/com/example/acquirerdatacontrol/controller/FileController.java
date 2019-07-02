@@ -34,10 +34,13 @@ public class FileController {
         return fileService.updateFileStatus(id, status);
     }
 
-    @GetMapping(path = {"download/{id}"})
+    @GetMapping(path = {"/download/{id}"})
     public ResponseEntity downloadFile(@PathVariable long id){
         return fileService.downloadAcquirerFile(id);
     }
+
+    @GetMapping(path={"/estatisticas"})
+    public ResponseEntity receivedFilesStatistics(){ return fileService.receivedFilesStatistics();}
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity create(@RequestBody MultipartFile file){
