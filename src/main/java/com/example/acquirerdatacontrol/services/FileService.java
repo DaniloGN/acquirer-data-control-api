@@ -105,7 +105,8 @@ public class FileService {
         }
     }
 
-    public ResponseEntity receivedFilesStatistics(){
-        return ResponseEntity.ok(fileRepository.getStatisticsFile());
+    public ResponseEntity receivedFilesStatistics(@RequestParam(value = "adquirente", required = false) String acquirer){
+        if(acquirer != null) return ResponseEntity.ok(fileRepository.getStatisticsFileByName(acquirer));
+        else return ResponseEntity.ok(fileRepository.getStatisticsFile());
     }
 }

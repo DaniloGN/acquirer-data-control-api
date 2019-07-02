@@ -40,7 +40,8 @@ public class FileController {
     }
 
     @GetMapping(path={"/estatisticas"})
-    public ResponseEntity receivedFilesStatistics(){ return fileService.receivedFilesStatistics();}
+    public ResponseEntity receivedFilesStatistics(@RequestParam(value= "adquirente",required = false) String acquirer){
+        return fileService.receivedFilesStatistics(acquirer);}
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity create(@RequestBody MultipartFile file){
