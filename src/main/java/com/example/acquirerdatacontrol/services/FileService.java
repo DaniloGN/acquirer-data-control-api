@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -105,8 +106,13 @@ public class FileService {
         }
     }
 
-    public ResponseEntity receivedFilesStatistics(@RequestParam(value = "adquirente", required = false) String acquirer){
-        if(acquirer != null) return ResponseEntity.ok(fileRepository.getStatisticsFileByName(acquirer));
+    public ResponseEntity receivedFilesStatistics(
+            @RequestParam(value = "adquirente", required = false) String acquirer,
+            @RequestParam(value = "data_inicial", required = false) String initial_date,
+            @RequestParam(value = "data_final", required = false) String final_date
+            ){
+        if(acquirer != null && final_date != null && initial_date != null) return ResponseEntity.ok(fileRepository.getStatisticsFileByNameAndDate(acquirer, initial_date, final_date));
+        else if(acquirer !=null) return ResponseEntity.ok(fileRepository.getStatisticsFileByName(acquirer));
         else return ResponseEntity.ok(fileRepository.getStatisticsFile());
     }
 }

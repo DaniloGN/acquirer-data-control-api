@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -40,8 +41,12 @@ public class FileController {
     }
 
     @GetMapping(path={"/estatisticas"})
-    public ResponseEntity receivedFilesStatistics(@RequestParam(value= "adquirente",required = false) String acquirer){
-        return fileService.receivedFilesStatistics(acquirer);}
+    public ResponseEntity receivedFilesStatistics(
+            @RequestParam(value= "adquirente",required = false) String acquirer,
+            @RequestParam(value = "data_inicial", required = false) String initial_date,
+            @RequestParam(value = "data_final", required = false) String final_date
+            ){
+        return fileService.receivedFilesStatistics(acquirer, initial_date, final_date);}
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity create(@RequestBody MultipartFile file){
