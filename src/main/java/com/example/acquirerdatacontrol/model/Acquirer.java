@@ -33,6 +33,9 @@ public class Acquirer {
     }
 
     public int getContract_number() {
-        return establishment.size();
+        if(establishment == null){
+            return 0;
+        }
+        else{return establishment.size();}
     }
 }

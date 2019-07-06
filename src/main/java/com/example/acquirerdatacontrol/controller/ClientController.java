@@ -1,6 +1,7 @@
 package com.example.acquirerdatacontrol.controller;
 
 import com.example.acquirerdatacontrol.services.ClientService;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,12 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody String name){
-        return clientService.create(name);
+    public ResponseEntity create(@RequestBody ObjectNode object){
+        return clientService.create(object);
     }
+
+    @DeleteMapping(path = {"/{id}"})
+    public ResponseEntity delete(@PathVariable Long id){ return clientService.delete(id);}
+
 
 }

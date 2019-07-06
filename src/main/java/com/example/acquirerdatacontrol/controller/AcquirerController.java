@@ -1,6 +1,7 @@
 package com.example.acquirerdatacontrol.controller;
 
 import com.example.acquirerdatacontrol.services.AcquirerService;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,11 @@ public class AcquirerController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody String name){
-        return acquirerService.create(name);
+    public ResponseEntity create(@RequestBody ObjectNode object){
+        return acquirerService.create(object);
     }
+
+    @DeleteMapping(path = {"/{id}"})
+    public ResponseEntity delete(@PathVariable Long id){ return acquirerService.delete(id);}
 
 }
