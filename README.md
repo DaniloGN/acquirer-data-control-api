@@ -4,8 +4,8 @@
 
   Esta API tem por finalidade prover as funções necessárias para o funcionamento tanto do upload do arquivo pela adquirente, quanto pelo funcionamento da aplicação web e futuramente um aplicativo mobile, já que eles são desacoplados.  
   A abordagem para solucionar o problema de automação foi deixar com que os arquivos enviados pelos adquirentes sejam automáticamente aceitos pelo sistema (caso os mesmos não tenham erro) e já são considerados para as estatísticas de recepção, porém, seus estados estarão como "Esperando", sendo de fácil visualização pelos operadores.  
-  Caso um arquivo não esteja adquado, a operação pode mudar o estado para "Rejeitado" e este não será considerado mais para as estatísticas. Para evitar retrabalho, há também o estado "Aprovado" para a operação saber que um dado arquivo já foi verificado.
-  Caso haja a necessidade de download(backup) dos arquivos, há a função de gerar o arquivo e baixa-lo novamente  
+  Caso um arquivo não esteja adquado, a operação pode mudar o estado para "Rejeitado" e este não será considerado mais para as estatísticas. Para evitar retrabalho, há também o estado "Aprovado" para que a operação saiba que um dado arquivo já foi verificado.
+  Caso haja a necessidade de download(backup) dos arquivos, há a função de gerar o arquivo e baixa-lo.
 
 O sistema conta com:
 * Listagem, cadastro e exclusão de adquirente;
@@ -21,18 +21,20 @@ O sistema conta com:
 ##### IDE
 ```
 * Clone ou faça download do projeto
+* Utilize o script sql disponivel na raiz do projeto para criar o banco (MySQL)
 * Na sua IDE importe o projeto como um projeto Spring Boot
 * Execute o projeto
 * Tudo pronto para usar!
 ```
-> Utilize a branch master para execução do código mais estável*
-
 ##### Maven
 ```
 * Clone ou faça download do projeto
 * Navegue até a pasta onde o pom.xml se encontra cd/adquirer-control-api
+* Utilize o script sql disponivel na raiz do projeto para criar o banco (MySQL)
 * Execute o seguinte comando: mvn package && java -jar target/gs-spring-boot-0.1.0.jar
 * Caso ja tenho utilizado esse comando anteriormente, utilize java -jar target/gs-spring-boot-0.1.0.jar para executar a aplicação *
 * Tudo pronto para usar!
 ```
-> Utilize a branch master para execução do código mais estável*
+> Utilize a branch master para execução do código mais estável  
+> Caso queira modificar a porta da aplicação ou as credenciais do banco de dados, atualizar o arquivo resources/application.properties
+
